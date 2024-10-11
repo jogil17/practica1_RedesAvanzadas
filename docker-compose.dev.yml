@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpassword
+    volumes:
+      - db_dev_data:/var/lib/postgresql/data
+      - ./db/init_dev.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+volumes:
+  db_dev_data:
